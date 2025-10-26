@@ -200,3 +200,4 @@ For support and questions, please open an issue on GitHub or contact the develop
 ---
 
 **LifeAID** - Connecting emergency responders with those who need help most. 🚑⚡
+# Life-AID
