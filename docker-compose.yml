@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./healthcare-signup/.next:/var/www/healthcare
+      - ./responder-connect/.next:/var/www/responder
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - healthcare-app
+      - responder-app
+
+  healthcare-app:
+    build: ./healthcare-signup
+    ports:
+      - "3001:3000"
+    environment:
+      - NODE_ENV=production
+
+  responder-app:
+    build: ./responder-connect
+    ports:
+      - "3002:3000"
+    environment:
+      - NODE_ENV=production
